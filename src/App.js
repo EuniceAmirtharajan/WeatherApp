@@ -38,10 +38,10 @@ function App() {
     let url = '';
     console.log(lat, long, city)
     if (lat != null) {
-      url = `http://api.openweathermap.org/data/2.5/weather?&lat=${lat}&lon=${long}&units=metric&APPID=293bc4ee167ab628a8609a2a277b312e`
+      url = `https://api.openweathermap.org/data/2.5/weather?&lat=${lat}&lon=${long}&units=metric&APPID=293bc4ee167ab628a8609a2a277b312e`
     }
     else {
-      url = `http://api.openweathermap.org/data/2.5/weather?&q=${city}&units=metric&APPID=293bc4ee167ab628a8609a2a277b312e`
+      url = `https://api.openweathermap.org/data/2.5/weather?&q=${city}&units=metric&APPID=293bc4ee167ab628a8609a2a277b312e`
     }
     fetch(url).then((response) => {
       response.json().then((res) => {
