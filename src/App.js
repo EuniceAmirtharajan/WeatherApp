@@ -66,7 +66,7 @@ function App() {
   const handleChange = ((val) => {
     let temperature = temp.temp;
     if (val === "F") {
-      temperature = temperature * 9 / 5 + 32;
+      temperature = (temperature * 9 / 5 + 32).toFixed(2);
     }
     if (val === "C") {
       temperature = ((5 / 9) * (temperature - 32)).toFixed(2);
