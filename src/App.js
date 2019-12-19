@@ -11,9 +11,9 @@ function App() {
   const [temp, setTemp] = useState({});
   const [error, setError] = useState(false);
   const [value, setValue] = useState("C");
-  let urlPrefix=`https://api.openweathermap.org/data/2.5/weather?`;
-  let api_key=process.env.REACT_APP_API_KEY;
-  let urlSuffix=`&units=metric&APPID=${api_key}`;
+  let urlPrefix = `https://api.openweathermap.org/data/2.5/weather?`;
+  let api_key = process.env.REACT_APP_API_KEY;
+  let urlSuffix = `&units=metric&APPID=${api_key}`;
   useEffect(() => {
     let cachedLat = localStorage.getItem("lat");
     let cachedLong = localStorage.getItem("long");
@@ -41,10 +41,12 @@ function App() {
     let url = '';
     console.log(lat, long, city)
     if (lat != null) {
+
       url = `${urlPrefix}&lat=${lat}&lon=${long}${urlSuffix}`
     }
     else {
       url = `${urlPrefix}&q=${city}${urlSuffix}`
+
     }
     fetch(url).then((response) => {
       response.json().then((res) => {
@@ -55,7 +57,7 @@ function App() {
             place: res.name,
             description: res.weather[0].description
           })
-        }else{
+        } else {
           setError(true);
         }
 
