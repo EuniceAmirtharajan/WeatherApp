@@ -11,6 +11,9 @@ function App() {
   const [temp, setTemp] = useState({});
   const [error, setError] = useState(false);
   const [value, setValue] = useState("C");
+  let urlPrefix=`https://api.openweathermap.org/data/2.5/weather?`;
+  let api_key=process.env.REACT_APP_API_KEY;
+  let urlSuffix=`&units=metric&APPID=${api_key}`;
   useEffect(() => {
     let cachedLat = localStorage.getItem("lat");
     let cachedLong = localStorage.getItem("long");
@@ -38,10 +41,10 @@ function App() {
     let url = '';
     console.log(lat, long, city)
     if (lat != null) {
-      url = `http://api.openweathermap.org/data/2.5/weather?&lat=${lat}&lon=${long}&units=metric&APPID=293bc4ee167ab628a8609a2a277b312e`
+      url = `${urlPrefix}&lat=${lat}&lon=${long}${urlSuffix}`
     }
     else {
-      url = `http://api.openweathermap.org/data/2.5/weather?&q=${city}&units=metric&APPID=293bc4ee167ab628a8609a2a277b312e`
+      url = `${urlPrefix}&q=${city}${urlSuffix}`
     }
     fetch(url).then((response) => {
       response.json().then((res) => {
@@ -66,7 +69,7 @@ function App() {
   const handleChange = ((val) => {
     let temperature = temp.temp;
     if (val === "F") {
-      temperature = temperature * 9 / 5 + 32;
+      temperature = (temperature * 9 / 5 + 32).toFixed(2);
     }
     if (val === "C") {
       temperature = ((5 / 9) * (temperature - 32)).toFixed(2);
